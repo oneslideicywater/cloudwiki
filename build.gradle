@@ -11,10 +11,9 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.15'
     }
 }
-
 
 plugins {
     // Apply the java plugin to add support for Java
@@ -22,8 +21,11 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application
     id 'application'
+    id 'org.asciidoctor.convert' version '1.5.8.1'
 }
-apply plugin: 'org.asciidoctor.convert'
+
+
+
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -44,10 +46,15 @@ application {
     // Define the main class for the application
     mainClassName = 'cloudwiki.App'
 }
+
+asciidoctorj {
+    version = '1.5.5'
+}
 asciidoctor {
+    println "asciidoctor in the pdf example  [executed]"
     backends 'pdf','html5'
     attributes \
-    'build-gradle': file('build.gradle'),
+        'build-gradle': file('build.gradle'),
     'sourcedir': project.sourceSets.main.java.srcDirs[0],
     'endpoint-url': 'http://example.org',
     'source-highlighter': 'coderay',
@@ -59,6 +66,9 @@ asciidoctor {
     'idseparator': '-',
     'docinfo1': ''
 }
+
 task hello{
+    println "$rootDir/src/docs/asciidoc"
+    println "$project.buildDir/asciidoc"
     println project.sourceSets.main.java.srcDirs[0]
 }
