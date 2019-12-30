@@ -2,11 +2,10 @@
 oneslide icywater
 version 1.0.0 20191227
 :toc:
-:toc-title: 目录
+:toc-title: Content
 :toclevels: 2
 :sectnums:
 
 
-== 功能全览
-
-include::chapter1/fullimage.adoc[]
+== Content
+include::chapter1/fullimage.adoc[scaledwidth=75%]
